@@ -14,24 +14,21 @@ class Program
         
         Scripture myScripture = new  Scripture (myreference,scriptureVerse );
         
+        Console.WriteLine(myScripture.GetDisplayText());
+        
+        Console.WriteLine ("Press enter to hide a word or Quit to exit");
 
        
         while (true)
         {
+
+            if (Console.ReadLine() == "Quit")
+            break;
+            
             Console.Clear();
+            
+            myScripture.HideRandomWords(1);
             Console.WriteLine(myScripture.GetDisplayText());
-
-            Console.WriteLine ("Press enter to hide a word or Quit to exit");
-
-            
-
-            var promptAnswer = Console.ReadLine();
-            
-            if (promptAnswer!= "Quit")
-            {
-                
-                 myScripture.HideRandomWords(1);
-            }
 
             if (myScripture.IsCompletelyHidden())
             {

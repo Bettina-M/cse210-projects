@@ -56,12 +56,13 @@ public class Scripture
  
  public string GetDisplayText()
  {
-   string newText = string.Join("_",Words);
    
-    string newScriptureText = $"{Reference.GetDisplayText()} {newText}";
-   
-    return newScriptureText;
-
+   string newText = "";
+   foreach(Word word in _Words)
+   {
+    newText = newText + word.GetDisplayText()+ "";
+   }
+    return newText.Trim();
     
 
  }
@@ -70,7 +71,7 @@ public class Scripture
   {
        foreach (Word word in Words)
        {
-        if (word.IsHidden())
+        if (!word.IsHidden())
         {
           return false;
         }

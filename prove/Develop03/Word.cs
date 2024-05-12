@@ -1,5 +1,6 @@
 
 using System.Security.Permissions;
+using Microsoft.VisualBasic;
 
 public class Word
 {
@@ -39,7 +40,17 @@ public class Word
 
     public string GetDisplayText()
     {
-      return _text;
+      
+       if (IsHidden())
+       { 
+        return  new string  ('_', Text.Length);
+       }
+       else
+       {
+        return Text;
+
+        
+       }
     }
 }
 
