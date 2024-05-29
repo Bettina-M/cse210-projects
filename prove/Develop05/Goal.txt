@@ -1,0 +1,2 @@
+Simple Goal,Finish projects,Finish week 5 project before friday,100,[]
+Simple Goal,Running,Run 1km daily,10,[]
