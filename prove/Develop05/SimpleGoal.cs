@@ -3,8 +3,11 @@ public class SimpleGoal : Goal
 
  private bool _isComplete;
 
- public bool iscomplete{get; set;}
-
+    public bool IsCompleteStatus
+    {
+        get { return _isComplete; }
+        set { _isComplete = value; }
+    }
 public string checkbox;
 public SimpleGoal(string name, string description,int  points) : base (name, description, points)
  {
@@ -14,9 +17,11 @@ public SimpleGoal(string name, string description,int  points) : base (name, des
 
  public override int RecordEvent()
  {
-      if(_isComplete)
+      if(!_isComplete)
       {
-         _points += _points;
+        _points += _points;
+        _isComplete = true;
+
       }
 
       return _points;
@@ -27,14 +32,14 @@ public SimpleGoal(string name, string description,int  points) : base (name, des
     
    
 
-   return _isComplete= true;
+   return _isComplete;
 
  }
 
  public override string GetStringRepresentation()
  { 
    string checkbox = _isComplete ? "[X]" : "[]";
-   return $"Simple Goal,{_shortName},{_description},{_points},{checkbox}";
+   return $"Simple Goal,{_name},{_description},{_points},{checkbox}";
  }
 
 

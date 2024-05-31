@@ -3,20 +3,37 @@ using System.ComponentModel;
 public abstract class Goal
 {
 
- protected string _shortName;
+ protected string _name;
  protected string _description;
  protected  int _points;
 
-public string Name { get; set;}
-public string Description {get; set;}
-public string Points {get;set;}
+
+public string Name
+    {
+        get { return _name; }
+        set { _name = value; }
+    }
+    public string Description
+    {
+        get { return _description; }
+        set { _description = value; }
+    }
+    public int Points
+    {
+        get { return _points; }
+        set { _points = value; }
+    }
  public Goal(string name, string description, int points)
  {
-    _shortName = name;
+    _name = name;
     _description = description;
     _points = points;
+   Name = name;
+   Description = description;
+   Points = points;
+  }
 
- }
+ 
 
  public abstract int RecordEvent();
  
@@ -27,7 +44,7 @@ public string Points {get;set;}
  public string GetDetailsString()
  {
    
-   return $"Goal,{_shortName},{_description},{_points}";
+   return $"Goal,{_name},{_description},{_points}";
 
  }
 

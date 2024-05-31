@@ -8,15 +8,28 @@ public class ChecklistGoal: Goal
     private int _bonus;
     public string checkbox;
 
-    public int AmountCompleted {get; set;}
-    public int Target{ get; set;}
-    public int Bonus {get;set;}
+    public int AmountCompleted
+    {
+        get{return _amountCompleted;}
+        set{_amountCompleted = value;}
+   
+    } 
+    public int Target
+    {
+        get{return _target;}
+        set{_target = value;}
+    }
+    public int Bonus
+    {
+        get{return _bonus;}
+        set{_bonus = value;}
+    }
 
     public ChecklistGoal(string name, string description, int points, int target, int amountCompleted, int bonus) : base (name, description, points)
     {
         _target = target;
         _bonus = bonus;
-        ;
+        _amountCompleted = amountCompleted;
     
 
         
@@ -26,10 +39,6 @@ public class ChecklistGoal: Goal
 
     {
 
-        _amountCompleted = 0;
-        _bonus = 500;
-
-
         if (!IsComplete())
         {
             AmountCompleted ++;
@@ -37,7 +46,6 @@ public class ChecklistGoal: Goal
             {
                 _points += _bonus;
 
-                checkbox = "[X]";
             }
         }
         
@@ -47,11 +55,12 @@ public class ChecklistGoal: Goal
 
     public override bool IsComplete()
     {
-        return true;
+
+        return AmountCompleted >= Target;
     }
-    public new string GetDetailsString ()
+   public new string GetDetailsString ()
     {
-        return $"CheckList Goal,{_shortName},{_description},{_points},{_target}/{_amountCompleted},{_bonus}";
+        return $"CheckList Goal,{_name},{_description},{_points},{_amountCompleted}/{_target},{_bonus}";
 
     }
     
@@ -60,7 +69,7 @@ public class ChecklistGoal: Goal
     {
         
         string checkbox = IsComplete() ? "[X]" : "[]";
-        return $"CheckList Goal,{_shortName},{_description},{_points},{_target}/{_amountCompleted},{_bonus},{checkbox}";
+        return $"CheckList Goal,{_name},{_description},{_points},{_target}/{_amountCompleted},{_bonus},{checkbox}";
 
 
     }

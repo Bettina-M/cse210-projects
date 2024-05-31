@@ -94,7 +94,7 @@ public class GoalManager
     public void DisplayPlayerInfo()
     {
        
-        Console.WriteLine($"You have {_score}");
+        Console.WriteLine($"You have {_score} points");
             
     }
 
@@ -102,7 +102,11 @@ public class GoalManager
     {
         foreach (var goal in _goals)
         {
-           Console.WriteLine(goal);
+            if (goal!= null)
+            {
+                Console.WriteLine(goal.GetStringRepresentation());
+
+            }
         }
     }
 
@@ -115,7 +119,7 @@ public class GoalManager
         Console.WriteLine("2.Checklist Goal");
         Console.WriteLine("3.Eternal Goal");
         
-        string choice = Console.ReadLine();
+        int choice = int.Parse(Console.ReadLine());
         Console.WriteLine("What is the name of the goal?" );
         string name = Console.ReadLine();
         Console.WriteLine("What is a short description of it?");
@@ -127,12 +131,12 @@ public class GoalManager
 
         Goal goal= null;
 
-        if (choice == "Simple Goal")
+        if (choice == 1)
         {
             goal = new SimpleGoal (name, description, points);
-        
+            
         }
-        else if (choice == "CheckListGoal ")
+        else if (choice == 2)
         {
             Console.WriteLine("Enter the completions for your goal");
             
@@ -148,7 +152,7 @@ public class GoalManager
             
             goal = new ChecklistGoal (name, description, points, target, amountCompleted, bonus);
         }
-        else if (choice == "Eternal Goal")
+        else if (choice == 3)
         {
             goal = new EternalGoal (name, description, points);
         }
@@ -165,15 +169,14 @@ public class GoalManager
         
         foreach (var goal in _goals)
         {
-            if (name== goal.Name)
+            if (goal != null && name== goal.Name)
             {
-                goal.RecordEvent();
-
-                _score+= int.Parse(goal.Points);
+                _score += goal.RecordEvent();
+               
             }
         }
-
-        Console.WriteLine($"You have a total of {_score} points");
+            Console.WriteLine($"You have a total of {_score} points");
+        
     }
 
     public void SaveGoals()
@@ -212,10 +215,10 @@ public class GoalManager
         string name = parts [1];
         string description = parts[2];
         int  points = int.Parse(parts[3]);
-        string checkbox = parts [4];
 
         if (name == "Simple Goal")
         {
+            bool isComplete = parts[4] == "[X]";
             goal = new SimpleGoal ( name, description, points);
 
            
@@ -237,8 +240,10 @@ public class GoalManager
 
 
          _goals.Add(goal);
+         Console.WriteLine($"{goalName}{goal}, {name}, {description}, {points}");
 
-         Console.WriteLine($"{name}, {description}, {points}, {checkbox}");
+         
+         
 
     }
     

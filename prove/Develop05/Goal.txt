@@ -1,2 +1,4 @@
 Simple Goal,Finish projects,Finish week 5 project before friday,100,[]
 Simple Goal,Running,Run 1km daily,10,[]
+Simple Goal,Run,Run everyday,20,[]
+CheckList Goal,Read,Reading,10,4/1,100,[]
